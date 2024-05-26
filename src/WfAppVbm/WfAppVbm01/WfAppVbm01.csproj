@@ -85,9 +85,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="Resources\SQL2019-SSEI-Expr.exe">
+    <None Include="Resources\db.sql" />
+    <Content Include="Resources\SQL2019-SSEI-Expr.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AdditionalFiles>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

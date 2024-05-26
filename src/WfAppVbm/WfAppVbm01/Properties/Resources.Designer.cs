@@ -61,6 +61,33 @@ namespace WfAppVbm01.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to -- Create the database
+        ///IF NOT EXISTS (
+        ///    SELECT name
+        ///    FROM sys.databases
+        ///    WHERE name = N&apos;MyDatabase&apos;
+        ///) BEGIN CREATE DATABASE [MyDatabase];
+        ///END
+        ///GO -- Use the new database
+        ///    USE [MyDatabase];
+        ///GO -- Create a table
+        ///    IF NOT EXISTS (
+        ///        SELECT *
+        ///        FROM sysobjects
+        ///        WHERE name = &apos;Employees&apos;
+        ///            AND xtype = &apos;U&apos;
+        ///    ) BEGIN CREATE TABLE [dbo].[Employees] (
+        ///        [EmployeeID] INT IDENTITY(1, 1) NOT NULL PRIMARY KEY,
+        ///        [FirstName] NVARCHAR(50) NOT NULL,
+        ///  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string db {
+            get {
+                return ResourceManager.GetString("db", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] SQL2019_SSEI_Expr {

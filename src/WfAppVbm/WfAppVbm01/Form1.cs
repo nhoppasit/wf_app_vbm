@@ -86,8 +86,9 @@ namespace WfAppVbm01
 
         private void btnCreateNewDatabase_Click(object sender, EventArgs e)
         {
-            string scriptContent = Properties.Resources.YourScriptFileName;
-            string connectionString = "Server=your_server_name;Integrated Security=true;";
+            string scriptContent = Properties.Resources.db;
+            string serverName = "localhost\\SQLEXPRESS02";
+            string connectionString = $"Server={serverName};Integrated Security=true;";
             try
             {
                 ExecuteSqlScript(connectionString, scriptContent);
