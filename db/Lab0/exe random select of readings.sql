@@ -9,4 +9,4 @@ GO -- DECLARE @return_value int EXEC @return_value = [dbo].[get_5_acceleration_r
 	@measurement_id = 1,
 	@start_datetime = '2024-05-26 08:00:00',
 	@end_datetime = '2024-05-26 08:10:00',
-	@random_threshold = 0.8;
+	@num_rows = 300;
