@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -19,7 +20,7 @@ namespace WfAppVbm01
                 "Confirm Installation",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
-            if (result == DialogResult.No)
+            if (result != DialogResult.Yes)
             {
                 return;
             }
@@ -82,5 +83,36 @@ namespace WfAppVbm01
                 });
             }
         }
+
+        private void btnCreateNewDatabase_Click(object sender, EventArgs e)
+        {
+            string scriptContent = Properties.Resources.YourScriptFileName;
+            string connectionString = "Server=your_server_name;Integrated Security=true;";
+            try
+            {
+                ExecuteSqlScript(connectionString, scriptContent);
+                MessageBox.Show("Database created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ExecuteSqlScript(string connectionString, string scriptContent)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string[] commandTexts = scriptContent.Split(new[] { "GO" }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string commandText in commandTexts)
+                {
+                    using (SqlCommand command = new SqlCommand(commandText, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
     }
 }
