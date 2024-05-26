@@ -14,6 +14,16 @@ namespace WfAppVbm01
 
         private void btnInstallSqlExpress_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show(
+                "Do you want to install SQL Server Express?",
+                "Confirm Installation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
             if (!IsAdministrator())
             {
                 // Restart program and run as admin
@@ -30,7 +40,6 @@ namespace WfAppVbm01
                 {
                     MessageBox.Show("The operation requires elevated permissions.");
                 }
-                Application.Exit(); // Close the current instance
             } else
             {
                 // Extract and run the installer
