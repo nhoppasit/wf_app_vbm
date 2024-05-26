@@ -1,4 +1,4 @@
--- Create the database if it doesn't exist
+-- Check if the database exists, if not, create it
 IF NOT EXISTS (
     SELECT name
     FROM sys.databases
@@ -8,23 +8,40 @@ END
 GO -- Use the new database
     USE [accelerometer_data];
 GO -- Create a table to store measurement information
-    CREATE TABLE IF NOT EXISTS measurement_info (
+    IF NOT EXISTS (
+        SELECT 1
+        FROM INFORMATION_SCHEMA.TABLES
+        WHERE TABLE_SCHEMA = 'dbo'
+            AND TABLE_NAME = 'measurement_info'
+    ) BEGIN CREATE TABLE measurement_info (
         measurement_id INT PRIMARY KEY IDENTITY(1, 1),
         start_time DATETIME NOT NULL,
         sensor_description NVARCHAR(255),
         notes NVARCHAR(MAX),
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+END
 GO -- Create a table to store port information
-    CREATE TABLE IF NOT EXISTS port_info (
+    IF NOT EXISTS (
+        SELECT 1
+        FROM INFORMATION_SCHEMA.TABLES
+        WHERE TABLE_SCHEMA = 'dbo'
+            AND TABLE_NAME = 'port_info'
+    ) BEGIN CREATE TABLE port_info (
         port_id INT PRIMARY KEY IDENTITY(1, 1),
         measurement_id INT,
         serial_port NVARCHAR(50) NOT NULL,
         port_level INT,
         FOREIGN KEY (measurement_id) REFERENCES measurement_info(measurement_id)
     );
+END
 GO -- Create a table to store acceleration data
-    CREATE TABLE IF NOT EXISTS acceleration_readings (
+    IF NOT EXISTS (
+        SELECT 1
+        FROM INFORMATION_SCHEMA.TABLES
+        WHERE TABLE_SCHEMA = 'dbo'
+            AND TABLE_NAME = 'acceleration_readings'
+    ) BEGIN CREATE TABLE acceleration_readings (
         reading_id INT PRIMARY KEY IDENTITY(1, 1),
         measurement_id INT,
         port_id INT,
@@ -35,6 +52,7 @@ GO -- Create a table to store acceleration data
         FOREIGN KEY (measurement_id) REFERENCES measurement_info(measurement_id),
         FOREIGN KEY (port_id) REFERENCES port_info(port_id)
     );
+END
 GO -- Create stored procedure for creating a measurement
     CREATE
     OR ALTER PROCEDURE create_measurement_info @p_start_time DATETIME,
