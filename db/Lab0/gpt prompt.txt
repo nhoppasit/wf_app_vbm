@@ -1,0 +1,43 @@
+please help me create a sql script that creates a database for store acceleration x, y, and z from serial port. i want to use serial port as master id for real-time data. can you help? 
+...
+thanks for python. i don't want python script. tell me only sql script
+...
+tell me more if i want to use store proc for insert and read data
+...
+i want more table for create master table for store measurement info like start time, sensor description and so on
+...
+ok tell me one more i want to create a table for store port info related to measurement info as under level
+...
+thank you. and can you tell me store proc for crud of them
+...
+thanks now summarize into one sql script.
+...
+i think acceleration_readings missing. please add it too
+...
+please use go instruction like this code
+
+-- Create the database
+IF NOT EXISTS (
+    SELECT name
+    FROM sys.databases
+    WHERE name = N'accelerometer_data'
+) BEGIN CREATE DATABASE [accelerometer_data];
+END
+GO -- Use the new database
+    USE [accelerometer_data];
+GO -- Create a table
+...
+what difference between with go and without go 
+...
+CREATE TABLE IF NOT EXISTS measurement_info. i found error of if-statement
+...
+i use ms sql express. 
+[copy code here]
+
+please re-write and fix them
+...
+
+
+
+
+
