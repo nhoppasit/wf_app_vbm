@@ -1,64 +1,150 @@
--- Create the database
+-- Create the database if it doesn't exist
 IF NOT EXISTS (
     SELECT name
     FROM sys.databases
-    WHERE name = N'MyDatabase'
-) BEGIN CREATE DATABASE [MyDatabase];
+    WHERE name = N'accelerometer_data'
+) BEGIN CREATE DATABASE [accelerometer_data];
 END
 GO -- Use the new database
-    USE [MyDatabase];
-GO -- Create a table
-    IF NOT EXISTS (
-        SELECT *
-        FROM sysobjects
-        WHERE name = 'Employees'
-            AND xtype = 'U'
-    ) BEGIN CREATE TABLE [dbo].[Employees] (
-        [EmployeeID] INT IDENTITY(1, 1) NOT NULL PRIMARY KEY,
-        [FirstName] NVARCHAR(50) NOT NULL,
-        [LastName] NVARCHAR(50) NOT NULL,
-        [BirthDate] DATE NULL,
-        [HireDate] DATE NULL
+    USE [accelerometer_data];
+GO -- Create a table to store measurement information
+    CREATE TABLE IF NOT EXISTS measurement_info (
+        measurement_id INT PRIMARY KEY IDENTITY(1, 1),
+        start_time DATETIME NOT NULL,
+        sensor_description NVARCHAR(255),
+        notes NVARCHAR(MAX),
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+GO -- Create a table to store port information
+    CREATE TABLE IF NOT EXISTS port_info (
+        port_id INT PRIMARY KEY IDENTITY(1, 1),
+        measurement_id INT,
+        serial_port NVARCHAR(50) NOT NULL,
+        port_level INT,
+        FOREIGN KEY (measurement_id) REFERENCES measurement_info(measurement_id)
+    );
+GO -- Create a table to store acceleration data
+    CREATE TABLE IF NOT EXISTS acceleration_readings (
+        reading_id INT PRIMARY KEY IDENTITY(1, 1),
+        measurement_id INT,
+        port_id INT,
+        x_acceleration FLOAT NOT NULL,
+        y_acceleration FLOAT NOT NULL,
+        z_acceleration FLOAT NOT NULL,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (measurement_id) REFERENCES measurement_info(measurement_id),
+        FOREIGN KEY (port_id) REFERENCES port_info(port_id)
+    );
+GO -- Create stored procedure for creating a measurement
+    CREATE
+    OR ALTER PROCEDURE create_measurement_info @p_start_time DATETIME,
+    @p_sensor_description NVARCHAR(255),
+    @p_notes NVARCHAR(MAX) AS BEGIN
+INSERT INTO measurement_info (start_time, sensor_description, notes)
+VALUES (@p_start_time, @p_sensor_description, @p_notes);
+END
+GO -- Create stored procedure for reading measurements
+    CREATE
+    OR ALTER PROCEDURE get_measurement_info AS BEGIN
+SELECT *
+FROM measurement_info;
+END
+GO -- Create stored procedure for updating a measurement
+    CREATE
+    OR ALTER PROCEDURE update_measurement_info @p_measurement_id INT,
+    @p_start_time DATETIME,
+    @p_sensor_description NVARCHAR(255),
+    @p_notes NVARCHAR(MAX) AS BEGIN
+UPDATE measurement_info
+SET start_time = @p_start_time,
+    sensor_description = @p_sensor_description,
+    notes = @p_notes
+WHERE measurement_id = @p_measurement_id;
+END
+GO -- Create stored procedure for deleting a measurement
+    CREATE
+    OR ALTER PROCEDURE delete_measurement_info @p_measurement_id INT AS BEGIN
+DELETE FROM measurement_info
+WHERE measurement_id = @p_measurement_id;
+END
+GO -- Create stored procedure for creating a port info
+    CREATE
+    OR ALTER PROCEDURE create_port_info @p_measurement_id INT,
+    @p_serial_port NVARCHAR(50),
+    @p_port_level INT AS BEGIN
+INSERT INTO port_info (measurement_id, serial_port, port_level)
+VALUES (@p_measurement_id, @p_serial_port, @p_port_level);
+END
+GO -- Create stored procedure for reading port info
+    CREATE
+    OR ALTER PROCEDURE get_port_info AS BEGIN
+SELECT *
+FROM port_info;
+END
+GO -- Create stored procedure for updating a port info
+    CREATE
+    OR ALTER PROCEDURE update_port_info @p_port_id INT,
+    @p_serial_port NVARCHAR(50),
+    @p_port_level INT AS BEGIN
+UPDATE port_info
+SET serial_port = @p_serial_port,
+    port_level = @p_port_level
+WHERE port_id = @p_port_id;
+END
+GO -- Create stored procedure for deleting a port info
+    CREATE
+    OR ALTER PROCEDURE delete_port_info @p_port_id INT AS BEGIN
+DELETE FROM port_info
+WHERE port_id = @p_port_id;
+END
+GO -- Create stored procedure for creating an acceleration reading
+    CREATE
+    OR ALTER PROCEDURE create_acceleration_reading @p_measurement_id INT,
+    @p_port_id INT,
+    @p_x_acceleration FLOAT,
+    @p_y_acceleration FLOAT,
+    @p_z_acceleration FLOAT AS BEGIN
+INSERT INTO acceleration_readings (
+        measurement_id,
+        port_id,
+        x_acceleration,
+        y_acceleration,
+        z_acceleration
+    )
+VALUES (
+        @p_measurement_id,
+        @p_port_id,
+        @p_x_acceleration,
+        @p_y_acceleration,
+        @p_z_acceleration
     );
 END
-GO -- Insert sample data
-INSERT INTO [dbo].[Employees] ([FirstName], [LastName], [BirthDate], [HireDate])
-VALUES ('John', 'Doe', '1980-01-01', '2005-06-01'),
-    ('Jane', 'Smith', '1985-02-12', '2010-07-15'),
-    ('Jim', 'Brown', '1990-03-23', '2015-08-20');
-GO -- Create stored procedure to add an employee
-    IF OBJECT_ID('dbo.AddEmployee', 'P') IS NOT NULL DROP PROCEDURE dbo.AddEmployee;
-GO CREATE PROCEDURE dbo.AddEmployee @FirstName NVARCHAR(50),
-    @LastName NVARCHAR(50),
-    @BirthDate DATE,
-    @HireDate DATE AS BEGIN
-INSERT INTO dbo.Employees (FirstName, LastName, BirthDate, HireDate)
-VALUES (@FirstName, @LastName, @BirthDate, @HireDate);
-END
-GO -- Create stored procedure to get all employees
-    IF OBJECT_ID('dbo.GetEmployees', 'P') IS NOT NULL DROP PROCEDURE dbo.GetEmployees;
-GO CREATE PROCEDURE dbo.GetEmployees AS BEGIN
+GO -- Create stored procedure for reading acceleration readings
+    CREATE
+    OR ALTER PROCEDURE get_acceleration_readings AS BEGIN
 SELECT *
-FROM dbo.Employees;
+FROM acceleration_readings;
 END
-GO -- Create stored procedure to update an employee
-    IF OBJECT_ID('dbo.UpdateEmployee', 'P') IS NOT NULL DROP PROCEDURE dbo.UpdateEmployee;
-GO CREATE PROCEDURE dbo.UpdateEmployee @EmployeeID INT,
-    @FirstName NVARCHAR(50),
-    @LastName NVARCHAR(50),
-    @BirthDate DATE,
-    @HireDate DATE AS BEGIN
-UPDATE dbo.Employees
-SET FirstName = @FirstName,
-    LastName = @LastName,
-    BirthDate = @BirthDate,
-    HireDate = @HireDate
-WHERE EmployeeID = @EmployeeID;
+GO -- Create stored procedure for updating an acceleration reading
+    CREATE
+    OR ALTER PROCEDURE update_acceleration_reading @p_reading_id INT,
+    @p_measurement_id INT,
+    @p_port_id INT,
+    @p_x_acceleration FLOAT,
+    @p_y_acceleration FLOAT,
+    @p_z_acceleration FLOAT AS BEGIN
+UPDATE acceleration_readings
+SET measurement_id = @p_measurement_id,
+    port_id = @p_port_id,
+    x_acceleration = @p_x_acceleration,
+    y_acceleration = @p_y_acceleration,
+    z_acceleration = @p_z_acceleration
+WHERE reading_id = @p_reading_id;
 END
-GO -- Create stored procedure to delete an employee
-    IF OBJECT_ID('dbo.DeleteEmployee', 'P') IS NOT NULL DROP PROCEDURE dbo.DeleteEmployee;
-GO CREATE PROCEDURE dbo.DeleteEmployee @EmployeeID INT AS BEGIN
-DELETE FROM dbo.Employees
-WHERE EmployeeID = @EmployeeID;
+GO -- Create stored procedure for deleting an acceleration reading
+    CREATE
+    OR ALTER PROCEDURE delete_acceleration_reading @p_reading_id INT AS BEGIN
+DELETE FROM acceleration_readings
+WHERE reading_id = @p_reading_id;
 END
 GO
