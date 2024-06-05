@@ -1,6 +1,6 @@
 ﻿namespace WfAppVbm01
 {
-    partial class frmMain
+    partial class SetupDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -52,15 +52,16 @@
             this.btnCreateNewDatabase.UseVisualStyleBackColor = true;
             this.btnCreateNewDatabase.Click += new System.EventHandler(this.btnCreateNewDatabase_Click);
             // 
-            // frmMain
+            // SetupDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(547, 227);
             this.Controls.Add(this.btnCreateNewDatabase);
             this.Controls.Add(this.btnInstallSqlExpress);
-            this.Name = "frmMain";
-            this.Text = "VBM 2024";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "SetupDialog";
+            this.Text = "Application Setup";
             this.ResumeLayout(false);
 
         }

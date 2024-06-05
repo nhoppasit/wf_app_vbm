@@ -6,9 +6,9 @@ using System.Windows.Forms;
 
 namespace WfAppVbm01
 {
-    public partial class frmMain : Form
+    public partial class SetupDialog : Form
     {
-        public frmMain()
+        public SetupDialog()
         {
             InitializeComponent();
         }
