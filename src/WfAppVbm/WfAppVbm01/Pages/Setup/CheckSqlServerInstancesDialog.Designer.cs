@@ -37,10 +37,10 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // FindDatabaseInstancesButton
+            // DiscoveringDatabaseInstancesButton
             // 
             this.DiscoveringDatabaseInstancesButton.Location = new System.Drawing.Point(12, 12);
-            this.DiscoveringDatabaseInstancesButton.Name = "FindDatabaseInstancesButton";
+            this.DiscoveringDatabaseInstancesButton.Name = "DiscoveringDatabaseInstancesButton";
             this.DiscoveringDatabaseInstancesButton.Size = new System.Drawing.Size(202, 67);
             this.DiscoveringDatabaseInstancesButton.TabIndex = 0;
             this.DiscoveringDatabaseInstancesButton.Text = "Find Database Instance";
