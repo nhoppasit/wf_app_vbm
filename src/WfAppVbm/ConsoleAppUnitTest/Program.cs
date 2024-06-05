@@ -27,13 +27,7 @@ namespace ConsoleAppUnitTest
                 string instanceName = row["InstanceName"].ToString();
                 string version = row["Version"].ToString();
 
-                if (instanceName.Equals("SQLEXPRESS", StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine($"SQL Server Express instance found: {serverName}\\{instanceName} (Version: {version})");
-                } else
-                {
-                    Console.WriteLine($"SQL Server instance found: {serverName}\\{instanceName} (Version: {version})");
-                }
+                Console.WriteLine($"SQL Server instance found: {serverName}\\{instanceName} (Version: {version})");
             }
             Console.ReadKey();
         }

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Syncfusion.Windows.Forms;
+using Syncfusion.WinForms.Controls;
+using System;
 using System.Windows.Forms;
 
 namespace WfAppVbm01
@@ -14,9 +13,13 @@ namespace WfAppVbm01
         [STAThread]
         static void Main()
         {
+            var licenseKey = "MzI5MDA4NkAzMjM1MmUzMDJlMzBGekgvNTNiOXpTQUh3L2NBRTg2djhRZDZIOUh4TE9BdFlCaU9DMS85ZTlRPQ==";
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(licenseKey);
+            SfSkinManager.LoadAssembly(typeof(Office2016Theme).Assembly);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SetupDialog());
+            Application.Run(new Pages.Setup.CheckSqlServerInstancesDialog());
         }
     }
 }

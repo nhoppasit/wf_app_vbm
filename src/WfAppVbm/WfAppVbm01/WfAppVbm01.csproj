@@ -36,6 +36,15 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Syncfusion.Core.WinForms, Version=25.2462.7.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Core.WinForms.25.2.7\lib\net462\Syncfusion.Core.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=25.2462.7.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.25.2.7\lib\net462\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Base, Version=25.2462.7.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Shared.Base.25.2.7\lib\net462\Syncfusion.Shared.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Setup\CheckSqlServerInstancesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Setup\CheckSqlServerInstancesDialog.Designer.cs">
+      <DependentUpon>CheckSqlServerInstancesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="SetupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Pages\Setup\CheckSqlServerInstancesDialog.resx">
+      <DependentUpon>CheckSqlServerInstancesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SetupDialog.resx">
       <DependentUpon>SetupDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -71,6 +89,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.manifest" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
