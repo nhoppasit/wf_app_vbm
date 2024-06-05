@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.Sql;
 using System.Management;
 
 namespace ConsoleAppUnitTest
@@ -7,7 +9,33 @@ namespace ConsoleAppUnitTest
     {
         static void Main(string[] args)
         {
-            WmiQueryLocalSqlInstances2();
+            CheckExistingSqlServerInstance();
+        }
+
+        static void CheckExistingSqlServerInstance()
+        {
+            // Get the instance of SqlDataSourceEnumerator
+            SqlDataSourceEnumerator instance = SqlDataSourceEnumerator.Instance;
+
+            // Get a DataTable containing information about available SQL Server instances
+            DataTable dataTable = instance.GetDataSources();
+
+            // Iterate through the rows and display information about each SQL Server instance
+            foreach (DataRow row in dataTable.Rows)
+            {
+                string serverName = row["ServerName"].ToString();
+                string instanceName = row["InstanceName"].ToString();
+                string version = row["Version"].ToString();
+
+                if (instanceName.Equals("SQLEXPRESS", StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine($"SQL Server Express instance found: {serverName}\\{instanceName} (Version: {version})");
+                } else
+                {
+                    Console.WriteLine($"SQL Server instance found: {serverName}\\{instanceName} (Version: {version})");
+                }
+            }
+            Console.ReadKey();
         }
 
         static void WmiQueryLocalSqlInstances2()
