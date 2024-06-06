@@ -58,25 +58,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\Setup\CheckSqlServerInstancesDialog.cs">
+    <Compile Include="Pages\Setup\DialogCheckSqlServerInstances.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pages\Setup\CheckSqlServerInstancesDialog.Designer.cs">
-      <DependentUpon>CheckSqlServerInstancesDialog.cs</DependentUpon>
+    <Compile Include="Pages\Setup\DialogCheckSqlServerInstances.Designer.cs">
+      <DependentUpon>DialogCheckSqlServerInstances.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Setup\SetupDialog.cs">
+    <Compile Include="Pages\Setup\DialogSetup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Pages\Setup\SetupDialog.Designer.cs">
-      <DependentUpon>SetupDialog.cs</DependentUpon>
+    <Compile Include="Pages\Setup\DialogSetup.Designer.cs">
+      <DependentUpon>DialogSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Pages\Setup\CheckSqlServerInstancesDialog.resx">
-      <DependentUpon>CheckSqlServerInstancesDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\Setup\DialogCheckSqlServerInstances.resx">
+      <DependentUpon>DialogCheckSqlServerInstances.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Setup\SetupDialog.resx">
-      <DependentUpon>SetupDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\Setup\DialogSetup.resx">
+      <DependentUpon>DialogSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

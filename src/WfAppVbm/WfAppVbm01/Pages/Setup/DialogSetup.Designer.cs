@@ -1,6 +1,6 @@
 ﻿namespace WfAppVbm01.Pages.Setup
 {
-    partial class SetupDialog
+    partial class DialogSetup
     {
         /// <summary>
         /// Required designer variable.

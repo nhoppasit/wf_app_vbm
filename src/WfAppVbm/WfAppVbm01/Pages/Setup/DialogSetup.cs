@@ -5,8 +5,8 @@ using System.IO;
 using System.Windows.Forms;
 
 namespace WfAppVbm01.Pages.Setup {
-    public partial class SetupDialog : Form {
-        public SetupDialog() {
+    public partial class DialogSetup : Form {
+        public DialogSetup() {
             InitializeComponent();
         }
 
@@ -19,7 +19,16 @@ namespace WfAppVbm01.Pages.Setup {
             if (result != DialogResult.Yes) {
                 return;
             }
-
+            result = MessageBox.Show(
+               "The installation of SQL Server Express might take some time. " +
+               "Please ensure you have sufficient time and do not interrupt the installation process. " +
+               "Are you sure you want to proceed with the installation of SQL Server Express?",
+               "Confirm Installation Again",
+               MessageBoxButtons.YesNo,
+               MessageBoxIcon.Warning);
+            if (result != DialogResult.Yes) {
+                return;
+            }
             if (!IsAdministrator()) {
                 // Restart program and run as admin
                 var exeName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
@@ -69,6 +78,26 @@ namespace WfAppVbm01.Pages.Setup {
         }
 
         private void btnCreateNewDatabase_Click(object sender, EventArgs e) {
+            DialogResult result = MessageBox.Show(
+                "Do you want to create a new database?",
+                "Confirm Database Creation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if (result != DialogResult.Yes) {
+                return;
+            }
+
+            // Second confirmation message box with additional warning
+            result = MessageBox.Show(
+                "Creating a new database will result in the loss of all existing data in the current database. " +
+                "Are you sure you want to proceed with creating a new database?",
+                "Confirm Database Creation Again",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+            if (result != DialogResult.Yes) {
+                return;
+            }
+
             string scriptContent = Properties.Resources.db;
             string serverName = "localhost\\SQLEXPRESS02";
             string connectionString = $"Server={serverName};Integrated Security=true;";

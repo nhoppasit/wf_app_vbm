@@ -1,6 +1,6 @@
 ﻿namespace WfAppVbm01.Pages.Setup
 {
-    partial class CheckSqlServerInstancesDialog
+    partial class DialogCheckSqlServerInstances
     {
         /// <summary>
         /// Required designer variable.

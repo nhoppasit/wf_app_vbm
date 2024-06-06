@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WfAppVbm01.Pages.Setup {
-    public partial class CheckSqlServerInstancesDialog : Form {
+    public partial class DialogCheckSqlServerInstances : Form {
         readonly BusyIndicator busyIndicator;
 
-        public CheckSqlServerInstancesDialog() {
+        public DialogCheckSqlServerInstances() {
             InitializeComponent();
 
             ListViewDatabaseInstances.FullRowSelect = true;
@@ -25,7 +25,6 @@ namespace WfAppVbm01.Pages.Setup {
 
         protected override async void OnLoad(EventArgs e) {
             base.OnLoad(e);
-            //busyIndicator.Show(ListViewDatabaseInstances);
             await Task.Run(() => {
                 ListViewItem item = new ListViewItem("1");
                 item.SubItems.Add(Properties.Settings.Default.SelectedServerName);
@@ -38,7 +37,6 @@ namespace WfAppVbm01.Pages.Setup {
                     ListViewDatabaseInstances.Items.Add(item);
                 });
             });
-            //busyIndicator.Hide();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e) {

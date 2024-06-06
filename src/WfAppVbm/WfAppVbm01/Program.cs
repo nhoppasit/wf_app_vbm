@@ -17,7 +17,7 @@ namespace WfAppVbm01 {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SetupDialog());
+            Application.Run(new DialogSetup());
         }
     }
 }
