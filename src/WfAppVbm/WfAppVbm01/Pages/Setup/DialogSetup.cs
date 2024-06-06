@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.WinForms.Core.Utils;
+using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
@@ -10,7 +11,14 @@ namespace WfAppVbm01.Pages.Setup {
             InitializeComponent();
         }
 
-        private void btnInstallSqlExpress_Click(object sender, EventArgs e) {
+        private void ButtonInstallSqlExpress_Click(object sender, EventArgs e) {
+            BusyIndicator busyIndicator = new BusyIndicator();
+            busyIndicator.Show(ButtonInstallSqlExpress);
+            InstallSqlExpress();
+            busyIndicator.Hide();
+        }
+
+        private void InstallSqlExpress() {
             DialogResult result = MessageBox.Show(
                 "Do you want to install SQL Server Express?",
                 "Confirm Installation",
@@ -68,16 +76,13 @@ namespace WfAppVbm01.Pages.Setup {
             return principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator);
         }
 
-        private void AppendOutput(string data) {
-            if (!string.IsNullOrEmpty(data)) {
-                this.Invoke((MethodInvoker)delegate {
-                    System.Diagnostics.Trace.WriteLine(data);
-                    //txtOutput.AppendText(data + Environment.NewLine);
-                });
-            }
+        private void ButtonCreateNewDatabase_Click(object sender, EventArgs e) {
+            BusyIndicator busyIndicator = new BusyIndicator();
+            busyIndicator.Show(ButtonCreateNewDatabase);
+            CreateNewDatabase();
+            busyIndicator.Hide();
         }
-
-        private void btnCreateNewDatabase_Click(object sender, EventArgs e) {
+        private void CreateNewDatabase() {
             DialogResult result = MessageBox.Show(
                 "Do you want to create a new database?",
                 "Confirm Database Creation",
@@ -98,9 +103,14 @@ namespace WfAppVbm01.Pages.Setup {
                 return;
             }
 
-            string scriptContent = Properties.Resources.db;
-            string serverName = "localhost\\SQLEXPRESS02";
-            string connectionString = $"Server={serverName};Integrated Security=true;";
+            string scriptContent = Properties.Resources.dbSchemaScript;
+            string connectionString = $"Server={Properties.Settings.Default.SelectedServerName}\\{Properties.Settings.Default.SelectedInstanceName};Integrated Security=true;";
+
+            if (!ValidateConnectionString(connectionString)) {
+                MessageBox.Show("Invalid connection string. Please check the server and instance names.", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try {
                 ExecuteSqlScript(connectionString, scriptContent);
                 MessageBox.Show("Database created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -121,5 +131,22 @@ namespace WfAppVbm01.Pages.Setup {
             }
         }
 
+
+
+        private bool ValidateConnectionString(string connectionString) {
+            try {
+                using (var connection = new SqlConnection(connectionString)) {
+                    connection.Open();
+                }
+                return true;
+            } catch (Exception) {
+                return false;
+            }
+        }
+
+        private void ButtonCheckAndChooseDbInstance_Click(object sender, EventArgs e) {
+            DialogCheckSqlServerInstances dialogCheckSqlServerInstances = new DialogCheckSqlServerInstances();
+            dialogCheckSqlServerInstances.ShowDialog();
+        }
     }
 }

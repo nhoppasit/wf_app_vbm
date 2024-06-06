@@ -28,39 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnInstallSqlExpress = new System.Windows.Forms.Button();
-            this.btnCreateNewDatabase = new System.Windows.Forms.Button();
+            this.ButtonInstallSqlExpress = new System.Windows.Forms.Button();
+            this.ButtonCreateNewDatabase = new System.Windows.Forms.Button();
+            this.ButtonCheckAndChooseDbInstance = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnInstallSqlExpress
+            // ButtonInstallSqlExpress
             // 
-            this.btnInstallSqlExpress.Location = new System.Drawing.Point(12, 12);
-            this.btnInstallSqlExpress.Name = "btnInstallSqlExpress";
-            this.btnInstallSqlExpress.Size = new System.Drawing.Size(114, 86);
-            this.btnInstallSqlExpress.TabIndex = 0;
-            this.btnInstallSqlExpress.Text = "Install SQL Express 2019";
-            this.btnInstallSqlExpress.UseVisualStyleBackColor = true;
-            this.btnInstallSqlExpress.Click += new System.EventHandler(this.btnInstallSqlExpress_Click);
+            this.ButtonInstallSqlExpress.Location = new System.Drawing.Point(12, 12);
+            this.ButtonInstallSqlExpress.Name = "ButtonInstallSqlExpress";
+            this.ButtonInstallSqlExpress.Size = new System.Drawing.Size(114, 86);
+            this.ButtonInstallSqlExpress.TabIndex = 0;
+            this.ButtonInstallSqlExpress.Text = "Install SQL Express 2019";
+            this.ButtonInstallSqlExpress.UseVisualStyleBackColor = true;
+            this.ButtonInstallSqlExpress.Click += new System.EventHandler(this.ButtonInstallSqlExpress_Click);
             // 
-            // btnCreateNewDatabase
+            // ButtonCreateNewDatabase
             // 
-            this.btnCreateNewDatabase.Location = new System.Drawing.Point(132, 12);
-            this.btnCreateNewDatabase.Name = "btnCreateNewDatabase";
-            this.btnCreateNewDatabase.Size = new System.Drawing.Size(114, 86);
-            this.btnCreateNewDatabase.TabIndex = 1;
-            this.btnCreateNewDatabase.Text = "Create new database";
-            this.btnCreateNewDatabase.UseVisualStyleBackColor = true;
-            this.btnCreateNewDatabase.Click += new System.EventHandler(this.btnCreateNewDatabase_Click);
+            this.ButtonCreateNewDatabase.Location = new System.Drawing.Point(252, 12);
+            this.ButtonCreateNewDatabase.Name = "ButtonCreateNewDatabase";
+            this.ButtonCreateNewDatabase.Size = new System.Drawing.Size(114, 86);
+            this.ButtonCreateNewDatabase.TabIndex = 1;
+            this.ButtonCreateNewDatabase.Text = "Create new database";
+            this.ButtonCreateNewDatabase.UseVisualStyleBackColor = true;
+            this.ButtonCreateNewDatabase.Click += new System.EventHandler(this.ButtonCreateNewDatabase_Click);
             // 
-            // SetupDialog
+            // ButtonCheckAndChooseDbInstance
+            // 
+            this.ButtonCheckAndChooseDbInstance.Location = new System.Drawing.Point(132, 12);
+            this.ButtonCheckAndChooseDbInstance.Name = "ButtonCheckAndChooseDbInstance";
+            this.ButtonCheckAndChooseDbInstance.Size = new System.Drawing.Size(114, 86);
+            this.ButtonCheckAndChooseDbInstance.TabIndex = 2;
+            this.ButtonCheckAndChooseDbInstance.Text = "Check and choose database instance";
+            this.ButtonCheckAndChooseDbInstance.UseVisualStyleBackColor = true;
+            this.ButtonCheckAndChooseDbInstance.Click += new System.EventHandler(this.ButtonCheckAndChooseDbInstance_Click);
+            // 
+            // DialogSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 227);
-            this.Controls.Add(this.btnCreateNewDatabase);
-            this.Controls.Add(this.btnInstallSqlExpress);
+            this.ClientSize = new System.Drawing.Size(471, 117);
+            this.Controls.Add(this.ButtonCheckAndChooseDbInstance);
+            this.Controls.Add(this.ButtonCreateNewDatabase);
+            this.Controls.Add(this.ButtonInstallSqlExpress);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "SetupDialog";
+            this.Name = "DialogSetup";
             this.Text = "Application Setup";
             this.ResumeLayout(false);
 
@@ -68,8 +80,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnInstallSqlExpress;
-        private System.Windows.Forms.Button btnCreateNewDatabase;
+        private System.Windows.Forms.Button ButtonInstallSqlExpress;
+        private System.Windows.Forms.Button ButtonCreateNewDatabase;
+        private System.Windows.Forms.Button ButtonCheckAndChooseDbInstance;
     }
 }
 

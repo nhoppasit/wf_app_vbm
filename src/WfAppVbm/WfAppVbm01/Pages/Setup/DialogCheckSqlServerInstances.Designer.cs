@@ -43,7 +43,7 @@
             this.DiscoveringDatabaseInstancesButton.Name = "DiscoveringDatabaseInstancesButton";
             this.DiscoveringDatabaseInstancesButton.Size = new System.Drawing.Size(202, 67);
             this.DiscoveringDatabaseInstancesButton.TabIndex = 0;
-            this.DiscoveringDatabaseInstancesButton.Text = "Find Database Instance";
+            this.DiscoveringDatabaseInstancesButton.Text = "Discover database instances";
             this.DiscoveringDatabaseInstancesButton.UseVisualStyleBackColor = true;
             this.DiscoveringDatabaseInstancesButton.Click += new System.EventHandler(this.DiscoveringDatabaseInstancesButton_Click);
             // 
@@ -91,7 +91,7 @@
             // 
             this.columnHeader5.Text = "Default";
             // 
-            // CheckSqlServerInstancesDialog
+            // DialogCheckSqlServerInstances
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -100,7 +100,7 @@
             this.Controls.Add(this.DiscoveringDatabaseInstancesButton);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "CheckSqlServerInstancesDialog";
+            this.Name = "DialogCheckSqlServerInstances";
             this.Text = "Check SQL Server Instances Dialog";
             this.ResumeLayout(false);
 

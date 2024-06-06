@@ -69,7 +69,9 @@ namespace WfAppVbm01.Pages.Setup {
         private async void DiscoveringDatabaseInstancesButton_Click(object sender, EventArgs e) {
             DiscoveringDatabaseInstancesButton.Enabled = false;
             this.busyIndicator.Show(DiscoveringDatabaseInstancesButton);
+            DiscoveringDatabaseInstancesButton.Text = "Wait for database instances discovering around 20 minutes.";
             await Task.Run(() => DiscoveringDatabaseInstances());
+            DiscoveringDatabaseInstancesButton.Text = "Discover database instances";
             this.busyIndicator.Hide();
             DiscoveringDatabaseInstancesButton.Enabled = true;
         }
@@ -104,6 +106,7 @@ namespace WfAppVbm01.Pages.Setup {
                             instanceName == Properties.Settings.Default.SelectedInstanceName &&
                             version == Properties.Settings.Default.SelectedInstanceVersion) {
                             item.SubItems[defaultColumnIndex].Text = "Yes"; // Mark as default
+                            item.Selected = true;
                         }
                         ListViewDatabaseInstances.Items.Add(item);
                         rowNo++;

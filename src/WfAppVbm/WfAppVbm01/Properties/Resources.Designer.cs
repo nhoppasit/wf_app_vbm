@@ -61,29 +61,34 @@ namespace WfAppVbm01.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to -- Create the database
+        ///   Looks up a localized string similar to -- Check if the database exists, if not, create it
         ///IF NOT EXISTS (
         ///    SELECT name
         ///    FROM sys.databases
-        ///    WHERE name = N&apos;MyDatabase&apos;
-        ///) BEGIN CREATE DATABASE [MyDatabase];
+        ///    WHERE name = N&apos;accelerometer_data&apos;
+        ///)
+        ///BEGIN
+        ///    CREATE DATABASE [accelerometer_data];
         ///END
-        ///GO -- Use the new database
-        ///    USE [MyDatabase];
-        ///GO -- Create a table
-        ///    IF NOT EXISTS (
-        ///        SELECT *
-        ///        FROM sysobjects
-        ///        WHERE name = &apos;Employees&apos;
-        ///            AND xtype = &apos;U&apos;
-        ///    ) BEGIN CREATE TABLE [dbo].[Employees] (
-        ///        [EmployeeID] INT IDENTITY(1, 1) NOT NULL PRIMARY KEY,
-        ///        [FirstName] NVARCHAR(50) NOT NULL,
-        ///  [rest of string was truncated]&quot;;.
+        ///GO
+        ///
+        ///-- Use the new database
+        ///USE [accelerometer_data];
+        ///GO
+        ///
+        ///-- Create a table to store measurement information
+        ///IF NOT EXISTS (
+        ///    SELECT 1
+        ///    FROM INFORMATION_SCHEMA.TABLES
+        ///    WHERE TABLE_SCHEMA = &apos;dbo&apos; AND TABLE_NAME = &apos;measurement_info&apos;
+        ///)
+        ///BEGIN
+        ///    CREATE TABLE measurement_info (
+        ///       [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string db {
+        internal static string dbSchemaScript {
             get {
-                return ResourceManager.GetString("db", resourceCulture);
+                return ResourceManager.GetString("dbSchemaScript", resourceCulture);
             }
         }
         
