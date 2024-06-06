@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace WfAppVbm01.Pages.Setup {
     public partial class CheckSqlServerInstancesDialog : Form {
-        BusyIndicator busyIndicator;
+        readonly BusyIndicator busyIndicator;
 
         public CheckSqlServerInstancesDialog() {
             InitializeComponent();

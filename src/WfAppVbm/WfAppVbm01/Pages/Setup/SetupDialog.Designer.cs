@@ -1,4 +1,4 @@
-﻿namespace WfAppVbm01
+﻿namespace WfAppVbm01.Pages.Setup
 {
     partial class SetupDialog
     {

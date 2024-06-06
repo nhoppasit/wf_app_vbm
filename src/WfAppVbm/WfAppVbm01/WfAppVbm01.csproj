@@ -64,10 +64,10 @@
     <Compile Include="Pages\Setup\CheckSqlServerInstancesDialog.Designer.cs">
       <DependentUpon>CheckSqlServerInstancesDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="SetupDialog.cs">
+    <Compile Include="Pages\Setup\SetupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SetupDialog.Designer.cs">
+    <Compile Include="Pages\Setup\SetupDialog.Designer.cs">
       <DependentUpon>SetupDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -75,7 +75,7 @@
     <EmbeddedResource Include="Pages\Setup\CheckSqlServerInstancesDialog.resx">
       <DependentUpon>CheckSqlServerInstancesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SetupDialog.resx">
+    <EmbeddedResource Include="Pages\Setup\SetupDialog.resx">
       <DependentUpon>SetupDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
