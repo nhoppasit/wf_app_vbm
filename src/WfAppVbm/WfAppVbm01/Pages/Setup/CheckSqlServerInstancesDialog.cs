@@ -18,9 +18,27 @@ namespace WfAppVbm01.Pages.Setup {
             ListViewDatabaseInstances.GridLines = true;
             ListViewDatabaseInstances.MultiSelect = false;
 
-            ListViewDatabaseInstances.ItemSelectionChanged += ListViewDatabaseInstances_ItemSelectionChanged;
+            ListViewDatabaseInstances.ItemSelectionChanged += DatabaseInstancesListView_ItemSelectionChanged;
 
             busyIndicator = new BusyIndicator();
+        }
+
+        protected override async void OnLoad(EventArgs e) {
+            base.OnLoad(e);
+            //busyIndicator.Show(ListViewDatabaseInstances);
+            await Task.Run(() => {
+                ListViewItem item = new ListViewItem("1");
+                item.SubItems.Add(Properties.Settings.Default.SelectedServerName);
+                item.SubItems.Add(Properties.Settings.Default.SelectedInstanceName);
+                item.SubItems.Add(Properties.Settings.Default.SelectedInstanceVersion);
+                item.SubItems.Add("Yes");
+                item.Selected = true;
+                this.Invoke((MethodInvoker)delegate {
+                    ListViewDatabaseInstances.Items.Clear();
+                    ListViewDatabaseInstances.Items.Add(item);
+                });
+            });
+            //busyIndicator.Hide();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e) {
@@ -36,13 +54,17 @@ namespace WfAppVbm01.Pages.Setup {
         }
 
         readonly int defaultColumnIndex = 4;
-        private void ListViewDatabaseInstances_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
+        private void DatabaseInstancesListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
             if (e.IsSelected) {
                 foreach (ListViewItem item in ListViewDatabaseInstances.Items) {
                     item.SubItems[defaultColumnIndex].Text = "";
                 }
                 e.Item.SubItems[defaultColumnIndex].Text = "Yes";
                 Trace.WriteLine($"Selected SQL Server instance: {e.Item.Text}");
+                Properties.Settings.Default.SelectedServerName = e.Item.SubItems[1].Text;
+                Properties.Settings.Default.SelectedInstanceName = e.Item.SubItems[2].Text;
+                Properties.Settings.Default.SelectedInstanceVersion = e.Item.SubItems[3].Text;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -80,6 +102,11 @@ namespace WfAppVbm01.Pages.Setup {
                         item.SubItems.Add(instanceName);
                         item.SubItems.Add(version);
                         item.SubItems.Add(""); // Initialize Default column as empty
+                        if (serverName == Properties.Settings.Default.SelectedServerName &&
+                            instanceName == Properties.Settings.Default.SelectedInstanceName &&
+                            version == Properties.Settings.Default.SelectedInstanceVersion) {
+                            item.SubItems[defaultColumnIndex].Text = "Yes"; // Mark as default
+                        }
                         ListViewDatabaseInstances.Items.Add(item);
                         rowNo++;
                     }
