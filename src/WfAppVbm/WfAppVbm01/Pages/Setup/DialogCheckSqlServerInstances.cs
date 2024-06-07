@@ -18,7 +18,7 @@ namespace WfAppVbm01.Pages.Setup {
             ListViewDatabaseInstances.GridLines = true;
             ListViewDatabaseInstances.MultiSelect = false;
 
-            ListViewDatabaseInstances.ItemSelectionChanged += DatabaseInstancesListView_ItemSelectionChanged;
+            ListViewDatabaseInstances.ItemSelectionChanged += ListViewDatabaseInstances_ItemSelectionChanged;
 
             busyIndicator = new BusyIndicator();
         }
@@ -52,7 +52,7 @@ namespace WfAppVbm01.Pages.Setup {
         }
 
         readonly int defaultColumnIndex = 4;
-        private void DatabaseInstancesListView_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
+        private void ListViewDatabaseInstances_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
             if (e.IsSelected) {
                 foreach (ListViewItem item in ListViewDatabaseInstances.Items) {
                     item.SubItems[defaultColumnIndex].Text = "";
