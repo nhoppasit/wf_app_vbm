@@ -2,7 +2,7 @@
 using Syncfusion.WinForms.Controls;
 using System;
 using System.Windows.Forms;
-using WfAppVbm01.Pages.Setup;
+using WfAppVbm01.Pages.Main;
 
 namespace WfAppVbm01 {
     internal static class Program {
@@ -17,7 +17,7 @@ namespace WfAppVbm01 {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DialogSetup());
+            Application.Run(new FormMain());
         }
     }
 }

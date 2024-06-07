@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Main\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Main\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Setup\DialogCheckSqlServerInstances.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Pages\Main\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Setup\DialogCheckSqlServerInstances.resx">
       <DependentUpon>DialogCheckSqlServerInstances.cs</DependentUpon>
     </EmbeddedResource>
