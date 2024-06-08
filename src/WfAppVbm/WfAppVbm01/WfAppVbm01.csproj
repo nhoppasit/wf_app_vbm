@@ -58,17 +58,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\Main\FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Pages\Main\FormMain.Designer.cs">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Main\FormWorkspace.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pages\Main\FormWorkspace.Designer.cs">
       <DependentUpon>FormWorkspace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Main\MDIParentMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Main\MDIParentMain.Designer.cs">
+      <DependentUpon>MDIParentMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\Setup\DialogCheckSqlServerInstances.cs">
       <SubType>Form</SubType>
@@ -84,11 +84,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Pages\Main\FormMain.resx">
-      <DependentUpon>FormMain.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Main\FormWorkspace.resx">
       <DependentUpon>FormWorkspace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Main\MDIParentMain.resx">
+      <DependentUpon>MDIParentMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Setup\DialogCheckSqlServerInstances.resx">
       <DependentUpon>DialogCheckSqlServerInstances.cs</DependentUpon>
@@ -122,10 +122,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\db.sql" />
+    <None Include="Resources\dbSchemaScript.sql" />
+    <None Include="Resources\icons\play.png" />
+    <None Include="Resources\icons\pause-button.png" />
     <Content Include="Resources\SQL2019-SSEI-Expr.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
