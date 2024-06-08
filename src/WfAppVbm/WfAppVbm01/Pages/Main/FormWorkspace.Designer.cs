@@ -1,5 +1,5 @@
 ﻿namespace WfAppVbm01.Pages.Main {
-    partial class FormWorkspace {
+    partial class MeasurementForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>

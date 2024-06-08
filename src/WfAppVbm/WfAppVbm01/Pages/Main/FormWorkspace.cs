@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 
 namespace WfAppVbm01.Pages.Main {
-    public partial class FormWorkspace : Form {
+    public partial class MeasurementForm : Form {
 
         public ToolStrip ToolStrip {
             get {
@@ -9,7 +9,7 @@ namespace WfAppVbm01.Pages.Main {
             }
         }
 
-        public FormWorkspace() {
+        public MeasurementForm() {
             InitializeComponent();
 
             toolStrip1.Dock = DockStyle.None;
