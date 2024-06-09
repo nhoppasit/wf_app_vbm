@@ -12,7 +12,8 @@ namespace AccelerometerDatabase {
 
         public string AddNew() {
             try {
-                using (GenericManagement_MYSQL db = new GenericManagement_MYSQL()) {
+                using (GenericManagement_MSSQL db = new GenericManagement_MSSQL()) {
+                    db.ConnectionString = _connectionString;
                     ResultTypeDS result = new ResultTypeDS();
                     return JsonConvert.SerializeObject(result);
                 }

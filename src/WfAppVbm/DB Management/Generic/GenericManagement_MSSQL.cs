@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Data.SqlClient;
 
-namespace DB_Management.Generic
-{
-    public class GenericManagement_MSSQL : IDbCommand_MSSQL, IDisposable
-    {
-        public DataSet ExecuteToDataSet(string sprocName, Dictionary<string, ParameterStructure_MSSQL> inputs, out int returnValue, ref Dictionary<string, ParameterStructure_MSSQL> output)
-        {
-            try
-            {
+namespace DB_Management.Generic {
+    public class GenericManagement_MSSQL : IDbCommand_MSSQL, IDisposable {
+        public string ConnectionString {
+            get { return DbCallback.ConnectionString; }
+            set { DbCallback.ConnectionString = value; }
+        }
+
+        public DataSet ExecuteToDataSet(string sprocName, Dictionary<string, ParameterStructure_MSSQL> inputs, out int returnValue, ref Dictionary<string, ParameterStructure_MSSQL> output) {
+            try {
                 returnValue = -99;
                 DataSet ds = new DataSet();
 
@@ -24,10 +23,8 @@ namespace DB_Management.Generic
                 // -------------------------------------------
                 // input parameters
                 // -------------------------------------------
-                if (inputs != null)
-                {
-                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> param in inputs)
-                    {
+                if (inputs != null) {
+                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> param in inputs) {
                         DbCallback.AddInputParameter(param.Value.Name, param.Value.sqlDbType, param.Value.dbValue);
                     }
                 }
@@ -35,10 +32,8 @@ namespace DB_Management.Generic
                 // -------------------------------------------
                 // output parameters
                 // -------------------------------------------
-                if (output != null)
-                {
-                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> param in output)
-                    {
+                if (output != null) {
+                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> param in output) {
                         if (param.Value.Size <= 0) DbCallback.AddOutputParameter(param.Value.Name, param.Value.sqlDbType);
                         else DbCallback.AddOutputParameter(param.Value.Name, param.Value.sqlDbType, param.Value.Size);
                     }
@@ -57,10 +52,8 @@ namespace DB_Management.Generic
                 // -------------------------------------------
                 // Get output parameters
                 // -------------------------------------------
-                if (output != null)
-                {
-                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> param in output)
-                    {
+                if (output != null) {
+                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> param in output) {
                         param.Value.dbValue = DbCallback.OutputParameterToObject(param.Value.Name);
                     }
                 }
@@ -79,18 +72,14 @@ namespace DB_Management.Generic
                 // safety
                 // -------------------------------------------
                 return null;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 DbCallback.CloseConnection();
                 throw ex;
             }
         }
 
-        public void ExecuteNonQuery(string sprocName, Dictionary<string, ParameterStructure_MSSQL> inputs, out int returnValue, ref Dictionary<string, ParameterStructure_MSSQL> output)
-        {
-            try
-            {
+        public void ExecuteNonQuery(string sprocName, Dictionary<string, ParameterStructure_MSSQL> inputs, out int returnValue, ref Dictionary<string, ParameterStructure_MSSQL> output) {
+            try {
                 // ------------------------------------------------
                 // Initialize return value
                 // ------------------------------------------------
@@ -106,10 +95,8 @@ namespace DB_Management.Generic
                 // ------------------------------------------------
                 // Input parameters
                 // ------------------------------------------------
-                if (inputs != null)
-                {
-                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> e in inputs)
-                    {
+                if (inputs != null) {
+                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> e in inputs) {
                         DbCallback.AddInputParameter(e.Value.Name, e.Value.sqlDbType, e.Value.dbValue);
                     }
                 }
@@ -128,10 +115,8 @@ namespace DB_Management.Generic
                 // ------------------------------------------------
                 // Output parameters
                 // ------------------------------------------------
-                if (output != null)
-                {
-                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> e in output)
-                    {
+                if (output != null) {
+                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> e in output) {
                         if (e.Value.Size <= 0) DbCallback.AddOutputParameter(e.Value.Name, e.Value.sqlDbType);
                         else DbCallback.AddOutputParameter(e.Value.Name, e.Value.sqlDbType, e.Value.Size);
                     }
@@ -152,10 +137,8 @@ namespace DB_Management.Generic
                 // ------------------------------------------------
                 // Get return output value
                 // ------------------------------------------------
-                if (output != null)
-                {
-                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> e in output)
-                    {
+                if (output != null) {
+                    foreach (KeyValuePair<string, ParameterStructure_MSSQL> e in output) {
                         e.Value.dbValue = DbCallback.OutputParameterToObject(e.Value.Name);
                     }
                 }
@@ -166,16 +149,13 @@ namespace DB_Management.Generic
                 // Stroe procedure name
                 // ------------------------------------------------
                 returnValue = DbCallback.GetReturnValue();
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 DbCallback.CloseConnection();
                 throw ex;
             }
         }
 
-        public void ExecuteNonQuery(string sprocName, ref List<SaveStructure> e)
-        {
+        public void ExecuteNonQuery(string sprocName, ref List<SaveStructure> e) {
             // ------------------------------------------------
             // Transaction loop
             // ------------------------------------------------                
@@ -184,10 +164,8 @@ namespace DB_Management.Generic
             SqlTransaction tx = conn.BeginTransaction();
             bool CatchFlag = false;
             Exception _ex;
-            try
-            {
-                for (int i = 0; i < e.Count; i++)
-                {
+            try {
+                for (int i = 0; i < e.Count; i++) {
                     SaveStructure arg = e[i];
 
                     // ------------------------------------------------
@@ -203,10 +181,8 @@ namespace DB_Management.Generic
                     // ------------------------------------------------
                     // Input parameters
                     // ------------------------------------------------
-                    if (arg.Inputs != null)
-                    {
-                        foreach (KeyValuePair<string, ParameterStructure_MSSQL> input in arg.Inputs)
-                        {
+                    if (arg.Inputs != null) {
+                        foreach (KeyValuePair<string, ParameterStructure_MSSQL> input in arg.Inputs) {
                             DbCallback.AddInputParameter(input.Value.Name, input.Value.sqlDbType, input.Value.dbValue);
                         }
                     }
@@ -214,10 +190,8 @@ namespace DB_Management.Generic
                     // ------------------------------------------------
                     // Output parameters
                     // ------------------------------------------------
-                    if (arg.Output != null)
-                    {
-                        foreach (KeyValuePair<string, ParameterStructure_MSSQL> output in arg.Output)
-                        {
+                    if (arg.Output != null) {
+                        foreach (KeyValuePair<string, ParameterStructure_MSSQL> output in arg.Output) {
                             if (output.Value.Size <= 0) DbCallback.AddOutputParameter(output.Value.Name, output.Value.sqlDbType);
                             else DbCallback.AddOutputParameter(output.Value.Name, output.Value.sqlDbType, output.Value.Size);
                         }
@@ -236,10 +210,8 @@ namespace DB_Management.Generic
                     // ------------------------------------------------
                     // Get return output value
                     // ------------------------------------------------
-                    if (arg.Output != null)
-                    {
-                        foreach (KeyValuePair<string, ParameterStructure_MSSQL> output in arg.Output)
-                        {
+                    if (arg.Output != null) {
+                        foreach (KeyValuePair<string, ParameterStructure_MSSQL> output in arg.Output) {
                             output.Value.dbValue = DbCallback.OutputParameterToObject(output.Value.Name);
                         }
                     }
@@ -252,18 +224,12 @@ namespace DB_Management.Generic
                     // ------------------------------------------------
                     // Stroe procedure validation failed!
                     // ------------------------------------------------
-                    if (arg.ReturnValue == -2)
-                    {
-                        if (arg.Output.ContainsKey("@MessageResult"))
-                        {
+                    if (arg.ReturnValue == -2) {
+                        if (arg.Output.ContainsKey("@MessageResult")) {
                             throw new Exception(arg.Output["@MessageResult"].dbValue.ToString());
-                        }
-                        else if (arg.Output.ContainsKey("MessageResult"))
-                        {
+                        } else if (arg.Output.ContainsKey("MessageResult")) {
                             throw new Exception(arg.Output["MessageResult"].dbValue.ToString());
-                        }
-                        else
-                        {
+                        } else {
                             throw new Exception("Return value equals -2. It means there is some error ing store procedure.");
                         }
                     }
@@ -272,9 +238,7 @@ namespace DB_Management.Generic
                 tx.Commit();
                 CatchFlag = false;
                 _ex = null;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 tx.Rollback();
                 DbCallback.CloseConnection();
                 CatchFlag = true;
@@ -286,14 +250,12 @@ namespace DB_Management.Generic
 
     }
 
-    public class ParameterStructure_MSSQL
-    {
+    public class ParameterStructure_MSSQL {
         public string Name { get; set; }
         public SqlDbType sqlDbType { get; set; }
         public int Size { get; set; }
         public object dbValue { get; set; }
-        public ParameterStructure_MSSQL(string name, SqlDbType type, object value = null, int size = 0)
-        {
+        public ParameterStructure_MSSQL(string name, SqlDbType type, object value = null, int size = 0) {
             this.Name = name;
             this.sqlDbType = type;
             this.dbValue = value;
@@ -304,8 +266,7 @@ namespace DB_Management.Generic
     /// <summary>
     /// ตัวแปรสำหรับรับค่าข้อมูลเพื่อบันทึก
     /// </summary>
-    public class SaveStructure
-    {
+    public class SaveStructure {
         public Dictionary<string, ParameterStructure_MSSQL> Inputs { get; set; }
         public int ReturnValue { get; set; }
         public Dictionary<string, ParameterStructure_MSSQL> Output { get; set; }
