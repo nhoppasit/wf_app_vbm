@@ -60,5 +60,12 @@ namespace WfAppVbm01.Pages.Main {
             dlg.TopMost = true;
             dlg.ShowDialog();
         }
+
+        private void installDatabaseToolStripMenuItem_Click(object sender, EventArgs e) {
+            var dlg = new Setup.DialogSetup();
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            dlg.TopMost = true;
+            dlg.ShowDialog();
+        }
     }
 }
