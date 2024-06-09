@@ -1,0 +1,42 @@
+E:\Work 2018\PHYSICS\TPM\Repo_tpm\ws_scr\V1\TPM2018\DB Security\bin\Release\DB Security.dll
+E:\Work 2018\PHYSICS\TPM\Repo_tpm\ws_scr\V1\TPM2018\DB Security\bin\Release\DB Security.pdb
+E:\Work 2018\PHYSICS\TPM\Repo_tpm\ws_scr\V1\TPM2018\DB Security\obj\Release\DB Security.csproj.CoreCompileInputs.cache
+E:\Work 2018\PHYSICS\TPM\Repo_tpm\ws_scr\V1\TPM2018\DB Security\obj\Release\DB Security.dll
+E:\Work 2018\PHYSICS\TPM\Repo_tpm\ws_scr\V1\TPM2018\DB Security\obj\Release\DB Security.pdb
+E:\Work 2018\PHYSICS\TPM\Repo_tpm\ws_scr\V1\TPM2018\DB Security\obj\Release\DB Security.csprojResolveAssemblyReference.cache
+D:\SIIT.SimpleAssetRegistrationStation 20181127115220\SIIT.SimpleAssetRegistrationStation\DB Security\bin\Release\DB Security.dll
+D:\SIIT.SimpleAssetRegistrationStation 20181127115220\SIIT.SimpleAssetRegistrationStation\DB Security\bin\Release\DB Security.pdb
+D:\SIIT.SimpleAssetRegistrationStation 20181127115220\SIIT.SimpleAssetRegistrationStation\DB Security\obj\Release\DB Security.csprojResolveAssemblyReference.cache
+D:\SIIT.SimpleAssetRegistrationStation 20181127115220\SIIT.SimpleAssetRegistrationStation\DB Security\obj\Release\DB Security.csproj.CoreCompileInputs.cache
+D:\SIIT.SimpleAssetRegistrationStation 20181127115220\SIIT.SimpleAssetRegistrationStation\DB Security\obj\Release\DB Security.dll
+D:\SIIT.SimpleAssetRegistrationStation 20181127115220\SIIT.SimpleAssetRegistrationStation\DB Security\obj\Release\DB Security.pdb
+E:\Work\Rajavithi_RVM\rajavithi_rvm_ws\DB Security\bin\Release\DB Security.dll
+E:\Work\Rajavithi_RVM\rajavithi_rvm_ws\DB Security\bin\Release\DB Security.pdb
+E:\Work\Rajavithi_RVM\rajavithi_rvm_ws\DB Security\obj\Release\DB Security.csprojAssemblyReference.cache
+E:\Work\Rajavithi_RVM\rajavithi_rvm_ws\DB Security\obj\Release\DB Security.csproj.CoreCompileInputs.cache
+E:\Work\Rajavithi_RVM\rajavithi_rvm_ws\DB Security\obj\Release\DB Security.dll
+E:\Work\Rajavithi_RVM\rajavithi_rvm_ws\DB Security\obj\Release\DB Security.pdb
+C:\Users\DogbeaR\source\repos\rajavithi_rvm_ws\DB Security\bin\Release\DB Security.dll
+C:\Users\DogbeaR\source\repos\rajavithi_rvm_ws\DB Security\bin\Release\DB Security.pdb
+C:\Users\DogbeaR\source\repos\rajavithi_rvm_ws\DB Security\obj\Release\DB Security.csprojAssemblyReference.cache
+C:\Users\DogbeaR\source\repos\rajavithi_rvm_ws\DB Security\obj\Release\DB Security.csproj.CoreCompileInputs.cache
+C:\Users\DogbeaR\source\repos\rajavithi_rvm_ws\DB Security\obj\Release\DB Security.dll
+C:\Users\DogbeaR\source\repos\rajavithi_rvm_ws\DB Security\obj\Release\DB Security.pdb
+E:\Work\Rajavithi_RVM\rvm_ws\DB Security\bin\Release\DB Security.dll
+E:\Work\Rajavithi_RVM\rvm_ws\DB Security\bin\Release\DB Security.pdb
+E:\Work\Rajavithi_RVM\rvm_ws\DB Security\obj\Release\DB Security.csprojAssemblyReference.cache
+E:\Work\Rajavithi_RVM\rvm_ws\DB Security\obj\Release\DB Security.csproj.CoreCompileInputs.cache
+E:\Work\Rajavithi_RVM\rvm_ws\DB Security\obj\Release\DB Security.dll
+E:\Work\Rajavithi_RVM\rvm_ws\DB Security\obj\Release\DB Security.pdb
+D:\works\LOTUS\mini_rvm_ws\DB Security\bin\Release\DB Security.dll
+D:\works\LOTUS\mini_rvm_ws\DB Security\bin\Release\DB Security.pdb
+D:\works\LOTUS\mini_rvm_ws\DB Security\obj\Release\DB Security.csprojAssemblyReference.cache
+D:\works\LOTUS\mini_rvm_ws\DB Security\obj\Release\DB Security.csproj.CoreCompileInputs.cache
+D:\works\LOTUS\mini_rvm_ws\DB Security\obj\Release\DB Security.dll
+D:\works\LOTUS\mini_rvm_ws\DB Security\obj\Release\DB Security.pdb
+D:\Energetic\pettagweb\src\pettagweb_ws\DB Security\bin\Release\DB Security.dll
+D:\Energetic\pettagweb\src\pettagweb_ws\DB Security\bin\Release\DB Security.pdb
+D:\Energetic\pettagweb\src\pettagweb_ws\DB Security\obj\Release\DB Security.csproj.AssemblyReference.cache
+D:\Energetic\pettagweb\src\pettagweb_ws\DB Security\obj\Release\DB Security.csproj.CoreCompileInputs.cache
+D:\Energetic\pettagweb\src\pettagweb_ws\DB Security\obj\Release\DB Security.dll
+D:\Energetic\pettagweb\src\pettagweb_ws\DB Security\obj\Release\DB Security.pdb
