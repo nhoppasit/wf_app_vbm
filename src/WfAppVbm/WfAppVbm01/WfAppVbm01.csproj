@@ -59,6 +59,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\Main\AboutDialogBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\Main\AboutDialogBox.Designer.cs">
+      <DependentUpon>AboutDialogBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Main\FormWorkspace.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Pages\Main\AboutDialogBox.resx">
+      <DependentUpon>AboutDialogBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Main\FormWorkspace.resx">
       <DependentUpon>FormWorkspace.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +139,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AccelerometerDatabase\AccelerometerDatabase.csproj">
+      <Project>{45e7b86f-191e-43a6-8c51-2ad270b8b9e7}</Project>
+      <Name>AccelerometerDatabase</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

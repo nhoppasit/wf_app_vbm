@@ -54,5 +54,11 @@ namespace WfAppVbm01.Pages.Main {
             }
         }
 
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
+            var dlg = new AboutDialogBox();
+            dlg.StartPosition = FormStartPosition.CenterScreen;
+            dlg.TopMost = true;
+            dlg.ShowDialog();
+        }
     }
 }
