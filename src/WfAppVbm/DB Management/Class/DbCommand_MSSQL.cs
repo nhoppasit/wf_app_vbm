@@ -201,11 +201,15 @@ namespace DB_Management {
         #region Connection
 
         public void OpenConnection() {
+            if (this._SqlCommand == null) return;
+            if (((SqlCommand)(this._SqlCommand)).Connection == null) return;
             if (((SqlCommand)(this._SqlCommand)).Connection.State != ConnectionState.Open) {
                 ((SqlCommand)(this._SqlCommand)).Connection.Open();
             }
         }
         public void CloseConnection() {
+            if (this._SqlCommand == null) return;
+            if (((SqlCommand)(this._SqlCommand)).Connection == null) return;
             if (((SqlCommand)(this._SqlCommand)).Connection.State != ConnectionState.Closed) {
                 ((SqlCommand)(this._SqlCommand)).Connection.Close();
             }

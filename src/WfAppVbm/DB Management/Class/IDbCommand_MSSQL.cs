@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
 
-namespace DB_Management
-{
-    public partial class IDbCommand_MSSQL : IDisposable
-    {
+namespace DB_Management {
+    public partial class IDbCommand_MSSQL : IDisposable {
         #region Dispose
 
         // Implement IDisposable. 
         // Do not make this method virtual. 
         // A derived class should not be able to override this method. 
         private bool disposed = false;
-        public void Dispose()
-        {
+        public void Dispose() {
             Dispose(true);
             // This object will be cleaned up by the Dispose method. 
             // Therefore, you should call GC.SupressFinalize to 
@@ -32,15 +25,12 @@ namespace DB_Management
         // If disposing equals false, the method has been called by the 
         // runtime from inside the finalizer and you should not reference 
         // other objects. Only unmanaged resources can be disposed. 
-        protected virtual void Dispose(bool disposing)
-        {
+        protected virtual void Dispose(bool disposing) {
             // Check to see if Dispose has already been called. 
-            if (!this.disposed)
-            {
+            if (!this.disposed) {
                 // If disposing equals true, dispose all managed 
                 // and unmanaged resources. 
-                if (disposing)
-                {
+                if (disposing) {
                     // Dispose managed resources.
                     _stm = string.Empty;
                     if (this.DbCallback != null) this.DbCallback.Dispose();
@@ -61,7 +51,15 @@ namespace DB_Management
         private string _stm;
         protected string stm { get { if (this._stm == null) { this._stm = String.Empty; } return this._stm; } set { this._stm = value; } }
         private DbCommand_MSSQL _DbCallback;
-        protected DbCommand_MSSQL DbCallback { get { if (this.DbCallback == null) { this.DbCallback = new DbCommand_MSSQL(); } return this.DbCallback; } set { this.DbCallback = value; } }
+        protected DbCommand_MSSQL DbCallback {
+            get {
+                if (this._DbCallback == null) {
+                    this._DbCallback = new DbCommand_MSSQL();
+                }
+                return this._DbCallback;
+            }
+            set { this._DbCallback = value; }
+        }
 
     }
 }

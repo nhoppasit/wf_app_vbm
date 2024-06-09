@@ -1,2 +1,12 @@
 D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\obj\Debug\AccelerometerDatabase.csproj.AssemblyReference.cache
 D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\obj\Debug\AccelerometerDatabase.csproj.CoreCompileInputs.cache
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\bin\Debug\AccelerometerDatabase.dll
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\bin\Debug\AccelerometerDatabase.pdb
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\bin\Debug\DB Management.dll
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\bin\Debug\Newtonsoft.Json.dll
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\bin\Debug\MySql.Data.dll
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\bin\Debug\DB Management.pdb
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\bin\Debug\Newtonsoft.Json.xml
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\obj\Debug\Accelero.98473FEB.Up2Date
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\obj\Debug\AccelerometerDatabase.dll
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\obj\Debug\AccelerometerDatabase.pdb
