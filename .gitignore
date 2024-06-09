@@ -12,3 +12,6 @@ src/WfAppVbm/DB Management/bin/
 src/WfAppVbm/DB Management/obj/
 src/WfAppVbm/DB Security/bin/
 src/WfAppVbm/DB Security/obj/
+src/WfAppVbm/AccelerometerDatabase/obj/
+src/WfAppVbm/AccelerometerDatabase/bin/
+src/WfAppVbm/AccelerometerDatabaseTests/
