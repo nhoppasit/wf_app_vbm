@@ -15,3 +15,5 @@ src/WfAppVbm/DB Security/obj/
 src/WfAppVbm/AccelerometerDatabase/obj/
 src/WfAppVbm/AccelerometerDatabase/bin/
 src/WfAppVbm/AccelerometerDatabaseTests/
+src/WfAppVbm/WfDatabaseSetupR1/obj/
+src/WfAppVbm/WfDatabaseSetupR1/bin/
