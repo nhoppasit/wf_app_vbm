@@ -94,12 +94,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DB Security\DB Security.csproj">
-      <Project>{D6A2E437-8A79-4C94-8681-1EB92D070A61}</Project>
-      <Name>DB Security</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="common\MySql.Data.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -2,18 +2,15 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DB_Management
-{
-    public class DbCommand_MSSQL : IDisposable
-    {
+namespace DB_Management {
+    public class DbCommand_MSSQL : IDisposable {
         #region Dispose
 
         // Implement IDisposable. 
         // Do not make this method virtual. 
         // A derived class should not be able to override this method. 
         private bool disposed = false;
-        public void Dispose()
-        {
+        public void Dispose() {
             Dispose(true);
             // This object will be cleaned up by the Dispose method. 
             // Therefore, you should call GC.SupressFinalize to 
@@ -30,15 +27,12 @@ namespace DB_Management
         // If disposing equals false, the method has been called by the 
         // runtime from inside the finalizer and you should not reference 
         // other objects. Only unmanaged resources can be disposed. 
-        protected virtual void Dispose(bool disposing)
-        {
+        protected virtual void Dispose(bool disposing) {
             // Check to see if Dispose has already been called. 
-            if (!this.disposed)
-            {
+            if (!this.disposed) {
                 // If disposing equals true, dispose all managed 
                 // and unmanaged resources. 
-                if (disposing)
-                {
+                if (disposing) {
                     // Dispose managed resources.
                     this.CloseConnection();
                     this.ReturnConnection();
@@ -69,8 +63,7 @@ namespace DB_Management
 
         #region Constructor & destructor
 
-        public DbCommand_MSSQL()
-        {
+        public DbCommand_MSSQL() {
             //ConnectionString = Properties.Settings.Default.ConnectionString + ";Password=" + DB_Security.Settings.Password;
             ConnectionString = DB_Security.Settings.ConnectionString;
             _SqlCommand = new SqlCommand();
@@ -81,20 +74,17 @@ namespace DB_Management
 
         #region Set command
 
-        public void SetCommandText(string cmdText)
-        {
+        public void SetCommandText(string cmdText) {
             ((SqlCommand)(this._SqlCommand)).Parameters.Clear();
             ((SqlCommand)(this._SqlCommand)).CommandText = cmdText;
             ((SqlCommand)(this._SqlCommand)).CommandType = CommandType.Text;
         }
-        public void SetCommandStoredProcedure(string storedProcName)
-        {
+        public void SetCommandStoredProcedure(string storedProcName) {
             ((SqlCommand)(this._SqlCommand)).Parameters.Clear();
             ((SqlCommand)(this._SqlCommand)).CommandText = storedProcName;
             ((SqlCommand)(this._SqlCommand)).CommandType = CommandType.StoredProcedure;
         }
-        public void AddInputParameter(string paramName, SqlDbType paramType, object paramValue)
-        {
+        public void AddInputParameter(string paramName, SqlDbType paramType, object paramValue) {
             SqlParameter param = new SqlParameter(paramName, paramType);
             if (paramValue == null) param.Value = DBNull.Value;
             else param.Value = paramValue;
@@ -105,8 +95,7 @@ namespace DB_Management
         /// <summary>
         /// เพิ่ม SqlParameter("ReturnValue",DBNull.Value) , ParameterDirection.ReturnValue
         /// </summary>
-        public void SetReturnValue()
-        {
+        public void SetReturnValue() {
             SqlParameter RetParam = new SqlParameter("ReturnValue", DBNull.Value);
             RetParam.Direction = ParameterDirection.ReturnValue;
             ((SqlCommand)(this._SqlCommand)).Parameters.Add(RetParam);
@@ -116,8 +105,7 @@ namespace DB_Management
         /// รับค่า Return Value สำหรับแจ้งผลเป็นเลขใดๆ
         /// </summary>
         /// <returns>เลขใด ๆ แจ้งผลลัพธ์การทำงานของคำสั่ง, 0 = SUCCESS, -1 = NOT FOUND / DO NOTHING, -2 = ERROR</returns>
-        public int GetReturnValue()
-        {
+        public int GetReturnValue() {
             return Convert.ToInt32(((SqlCommand)(this._SqlCommand)).Parameters["ReturnValue"].Value);
         }
 
@@ -126,8 +114,7 @@ namespace DB_Management
         /// </summary>
         /// <param name="paramName">Samples are @IntResult or @MessageResult</param>
         /// <param name="paramType">Samples are int or nvarchar(100)</param>
-        public void AddOutputParameter(string paramName, SqlDbType paramType, int paramSize = 0)
-        {
+        public void AddOutputParameter(string paramName, SqlDbType paramType, int paramSize = 0) {
             SqlParameter param;
             if (paramSize > 0) param = new SqlParameter(paramName, paramType, paramSize);
             else param = new SqlParameter(paramName, paramType);
@@ -140,8 +127,7 @@ namespace DB_Management
         /// </summary>
         /// <param name="paramName">Sample is @IntResult</param>
         /// <returns>จำนวนแถวถูกที่ดำเนินการ</returns>
-        public int OutputParameterToInt(string paramName)
-        {
+        public int OutputParameterToInt(string paramName) {
             return Convert.ToInt32(((SqlCommand)(this._SqlCommand)).Parameters[paramName].Value);
         }
 
@@ -150,13 +136,11 @@ namespace DB_Management
         /// </summary>
         /// <param name="paramName">Sample is @MessageResult</param>
         /// <returns>ข้อความใด ๆ</returns>
-        public string OutputParameterToString(string paramName)
-        {
+        public string OutputParameterToString(string paramName) {
             return Convert.ToString(((SqlCommand)(this._SqlCommand)).Parameters[paramName].Value);
         }
 
-        public object OutputParameterToObject(string paramName)
-        {
+        public object OutputParameterToObject(string paramName) {
             return ((SqlCommand)(this._SqlCommand)).Parameters[paramName].Value;
         }
 
@@ -164,11 +148,9 @@ namespace DB_Management
 
         #region Execute
 
-        public DataSet ExecuteToDataSet()
-        {
+        public DataSet ExecuteToDataSet() {
             DataSet dts = new DataSet();
-            using (SqlConnection conn = new SqlConnection())
-            {
+            using (SqlConnection conn = new SqlConnection()) {
                 conn.ConnectionString = this.ConnectionString;
                 ((SqlCommand)(this._SqlCommand)).Connection = conn;
                 //((SqlCommand)(this._SqlCommand)).CommandTimeout = _TIMEOUT;
@@ -177,10 +159,8 @@ namespace DB_Management
             }
             return dts;
         }
-        public DataSet ExecuteToDataSet(DataSet typedDataSet, string tableName)
-        {
-            using (SqlConnection conn = new SqlConnection())
-            {
+        public DataSet ExecuteToDataSet(DataSet typedDataSet, string tableName) {
+            using (SqlConnection conn = new SqlConnection()) {
                 conn.ConnectionString = this.ConnectionString;
                 ((SqlCommand)(this._SqlCommand)).Connection = conn;
                 ((SqlCommand)(this._SqlCommand)).CommandTimeout = _TIMEOUT;
@@ -189,11 +169,9 @@ namespace DB_Management
             }
             return typedDataSet;
         }
-        public int ExecuteNonQuery()
-        {
+        public int ExecuteNonQuery() {
             int result = 0;
-            using (SqlConnection conn = new SqlConnection())
-            {
+            using (SqlConnection conn = new SqlConnection()) {
                 conn.ConnectionString = this.ConnectionString;
                 ((SqlCommand)(this._SqlCommand)).Connection = conn;
                 //((SqlCommand)(this._SqlCommand)).CommandTimeout = _TIMEOUT;
@@ -203,11 +181,9 @@ namespace DB_Management
             }
             return result;
         }
-        public int ExecuteNonQuery(SqlConnection conn, SqlTransaction tx)
-        {
+        public int ExecuteNonQuery(SqlConnection conn, SqlTransaction tx) {
             int result = 0;
-            try
-            {
+            try {
                 //conn.ConnectionString = this.ConnectionString;
                 ((SqlCommand)(this._SqlCommand)).Connection = conn;
                 //((SqlCommand)(this._SqlCommand)).CommandTimeout = _TIMEOUT;
@@ -216,8 +192,7 @@ namespace DB_Management
                 ((SqlCommand)(this._SqlCommand)).Transaction = tx;
                 result = ((SqlCommand)(this._SqlCommand)).ExecuteNonQuery();
                 //this.CloseConnection();
-            }
-            catch (Exception ex) { throw ex; }
+            } catch (Exception ex) { throw ex; }
             return result;
         }
 
@@ -225,22 +200,17 @@ namespace DB_Management
 
         #region Connection
 
-        public void OpenConnection()
-        {
-            if (((SqlCommand)(this._SqlCommand)).Connection.State != ConnectionState.Open)
-            {
+        public void OpenConnection() {
+            if (((SqlCommand)(this._SqlCommand)).Connection.State != ConnectionState.Open) {
                 ((SqlCommand)(this._SqlCommand)).Connection.Open();
             }
         }
-        public void CloseConnection()
-        {
-            if (((SqlCommand)(this._SqlCommand)).Connection.State != ConnectionState.Closed)
-            {
+        public void CloseConnection() {
+            if (((SqlCommand)(this._SqlCommand)).Connection.State != ConnectionState.Closed) {
                 ((SqlCommand)(this._SqlCommand)).Connection.Close();
             }
         }
-        public void ReturnConnection()
-        {
+        public void ReturnConnection() {
             ConnectionString = null;
         }
 
