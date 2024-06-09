@@ -1,0 +1,2 @@
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\obj\Debug\AccelerometerDatabase.csproj.AssemblyReference.cache
+D:\NHOP\NC\vibrometer\wf_app_vbm\src\WfAppVbm\AccelerometerDatabase\obj\Debug\AccelerometerDatabase.csproj.CoreCompileInputs.cache
