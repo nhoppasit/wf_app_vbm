@@ -1,10 +1,12 @@
--- Create Procedure for Adding New Measurement Info
-CREATE PROCEDURE sp_MeasurementInfo_AddNew @val_first_start_time DATETIME,
-@val_sensor_description NVARCHAR(255),
-@val_serial_port NVARCHAR(5),
-@CodeValue INT OUT,
-@RowCount INT OUT,
-@MessageResult NVARCHAR(1000) OUT AS BEGIN
+Use accelerometer_data
+GO --
+    -- Create Procedure for Adding New Measurement Info
+    CREATE PROCEDURE sp_MeasurementInfo_AddNew @val_first_start_time DATETIME,
+    @val_sensor_description NVARCHAR(255),
+    @val_serial_port NVARCHAR(5),
+    @CodeValue INT OUT,
+    @RowCount INT OUT,
+    @MessageResult NVARCHAR(1000) OUT AS BEGIN
 SET NOCOUNT ON;
 BEGIN TRY
 DECLARE @create_date DATETIME = GETDATE();
