@@ -55,7 +55,7 @@ namespace DB_Management {
         /// <summary>
         /// Get connection string of BO23 database
         /// </summary>
-        public string ConnectionString { get; private set; }
+        public string ConnectionString { get; set; }
         private Object _SqlCommand;
         private int _TIMEOUT = 14400;
 
@@ -65,7 +65,7 @@ namespace DB_Management {
 
         public DbCommand_MSSQL() {
             //ConnectionString = Properties.Settings.Default.ConnectionString + ";Password=" + DB_Security.Settings.Password;
-            ConnectionString = DB_Security.Settings.ConnectionString;
+            //ConnectionString = DB_Security.Settings.ConnectionString;
             _SqlCommand = new SqlCommand();
         }
         ~DbCommand_MSSQL() { Dispose(); }
