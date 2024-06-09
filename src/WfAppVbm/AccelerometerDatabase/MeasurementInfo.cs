@@ -20,18 +20,24 @@ namespace AccelerometerDatabase {
                     db.ConnectionString = _connectionString;
                     Dictionary<string, ParameterStructure_MSSQL> Inputs = new Dictionary<string, ParameterStructure_MSSQL>(){
 
-                        { "@val_parametername", new ParameterStructure_MSSQL("@val_parametername", SqlDbType.VarChar, pet.PetName) },
+                        { "@val_parametername", new ParameterStructure_MSSQL("@val_parametername", SqlDbType.NVarChar, measurementInfo.??) },
 
                     };
 
                     Dictionary<string, ParameterStructure_MSSQL> Output = new Dictionary<string, ParameterStructure_MSSQL>()
                     {
-                        { "@RowCount", new ParameterStructure_MYSQL("@RowCount", MySqlDbType.Int32)},
-                        { "@MessageResult", new ParameterStructure_MYSQL("@MessageResult", MySqlDbType.VarChar, null, 200) },
-                         { "@CodeValue", new ParameterStructure_MYSQL("@CodeValue", MySqlDbType.Int32) }
+                        { "@RowCount", new ParameterStructure_MSSQL("@RowCount", SqlDbType.Int)},
+                        { "@MessageResult", new ParameterStructure_MSSQL("@MessageResult", SqlDbType.NVarChar, null, 200) },
+                         { "@CodeValue", new ParameterStructure_MSSQL("@CodeValue", SqlDbType.Int) }
                     };
 
                     ResultTypeDS result = new ResultTypeDS();
+                    result.DataSetResult = db.ExecuteToDataSet("sp_Pet_AddNew", Inputs, ref Output);
+                    int rowCount = Convert.ToInt32(Output["@RowCount"].dbValue);
+                    result.Code = Convert.ToInt32(Output["@CodeValue"].dbValue);
+                    result.RowCount = rowCount;
+                    result.Message = Output["@MessageResult"].dbValue.ToString();
+                    result.Flag = Convert.ToInt32(Output["@CodeValue"].dbValue) == 0 && rowCount > 0 ? true : false;
                     return JsonConvert.SerializeObject(result);
                 }
             } catch (Exception ex) {

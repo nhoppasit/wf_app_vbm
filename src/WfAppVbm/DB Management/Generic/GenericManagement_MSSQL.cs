@@ -10,9 +10,8 @@ namespace DB_Management.Generic {
             set { DbCallback.ConnectionString = value; }
         }
 
-        public DataSet ExecuteToDataSet(string sprocName, Dictionary<string, ParameterStructure_MSSQL> inputs, out int returnValue, ref Dictionary<string, ParameterStructure_MSSQL> output) {
+        public DataSet ExecuteToDataSet(string sprocName, Dictionary<string, ParameterStructure_MSSQL> inputs, ref Dictionary<string, ParameterStructure_MSSQL> output) {
             try {
-                returnValue = -99;
                 DataSet ds = new DataSet();
 
                 // -------------------------------------------
@@ -40,11 +39,6 @@ namespace DB_Management.Generic {
                 }
 
                 // -------------------------------------------
-                // Set return
-                // -------------------------------------------
-                DbCallback.SetReturnValue();
-
-                // -------------------------------------------
                 // Execute
                 // -------------------------------------------
                 ds = DbCallback.ExecuteToDataSet();
@@ -57,11 +51,6 @@ namespace DB_Management.Generic {
                         param.Value.dbValue = DbCallback.OutputParameterToObject(param.Value.Name);
                     }
                 }
-
-                // -------------------------------------------
-                // Return value
-                // -------------------------------------------
-                returnValue = DbCallback.GetReturnValue();
 
                 // -------------------------------------------
                 // Return DataSet
@@ -78,15 +67,8 @@ namespace DB_Management.Generic {
             }
         }
 
-        public void ExecuteNonQuery(string sprocName, Dictionary<string, ParameterStructure_MSSQL> inputs, out int returnValue, ref Dictionary<string, ParameterStructure_MSSQL> output) {
+        public void ExecuteNonQuery(string sprocName, Dictionary<string, ParameterStructure_MSSQL> inputs, ref Dictionary<string, ParameterStructure_MSSQL> output) {
             try {
-                // ------------------------------------------------
-                // Initialize return value
-                // ------------------------------------------------
-                returnValue = -99;
-                //rowCount = 0;
-                //message = "";
-
                 // ------------------------------------------------
                 // Stroe procedure name
                 // ------------------------------------------------
@@ -100,17 +82,6 @@ namespace DB_Management.Generic {
                         DbCallback.AddInputParameter(e.Value.Name, e.Value.sqlDbType, e.Value.dbValue);
                     }
                 }
-                //DbCallback.AddInputParameter("@Pid", SqlDbType.Int, e.PlantationId);
-                //DbCallback.AddInputParameter("@Id", SqlDbType.BigInt, e.Id);
-                //DbCallback.AddInputParameter("@Species", SqlDbType.NVarChar, e.Species);
-                //DbCallback.AddInputParameter("@Detail", SqlDbType.NVarChar, e.Detail);
-                //DbCallback.AddInputParameter("@ActivityDate", SqlDbType.DateTime, e.ActivityDate);
-                //DbCallback.AddInputParameter("@PlantCount", SqlDbType.Int, e.PlantCount);
-                //DbCallback.AddInputParameter("@PlantHeight", SqlDbType.Decimal, e.PlantHeight);
-                //DbCallback.AddInputParameter("@AmountRate", SqlDbType.Decimal, e.AmountRate);
-                //DbCallback.AddInputParameter("@AdvanceAmount", SqlDbType.Decimal, e.AdvanceAmount);
-                //DbCallback.AddInputParameter("@TotalAmount", SqlDbType.Decimal, e.TotalAmount);
-                //DbCallback.AddInputParameter("@UserID", SqlDbType.Int, e.UserId);
 
                 // ------------------------------------------------
                 // Output parameters
@@ -121,13 +92,6 @@ namespace DB_Management.Generic {
                         else DbCallback.AddOutputParameter(e.Value.Name, e.Value.sqlDbType, e.Value.Size);
                     }
                 }
-                //DbCallback.AddOutputParameter("@IntResult", SqlDbType.Int);
-                //DbCallback.AddOutputParameter("@MessageResult", SqlDbType.NVarChar, 100);
-
-                // ------------------------------------------------
-                // Set return value
-                // ------------------------------------------------
-                DbCallback.SetReturnValue();
 
                 // ------------------------------------------------
                 // Execute
@@ -142,13 +106,7 @@ namespace DB_Management.Generic {
                         e.Value.dbValue = DbCallback.OutputParameterToObject(e.Value.Name);
                     }
                 }
-                //rowCount = DbCallback.OutputParameterToInt("@IntResult");
-                //message = DbCallback.OutputParameterToString("@MessageResult");
 
-                // ------------------------------------------------
-                // Stroe procedure name
-                // ------------------------------------------------
-                returnValue = DbCallback.GetReturnValue();
             } catch (Exception ex) {
                 DbCallback.CloseConnection();
                 throw ex;
