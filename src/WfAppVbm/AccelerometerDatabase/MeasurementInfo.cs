@@ -1,4 +1,6 @@
 ﻿using DB_Management.Generic;
+using DB_Management.Model;
+using Newtonsoft.Json;
 using System;
 
 namespace AccelerometerDatabase {
